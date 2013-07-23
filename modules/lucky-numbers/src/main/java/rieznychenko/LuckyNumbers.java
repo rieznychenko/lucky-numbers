@@ -2,10 +2,9 @@ package rieznychenko;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class LuckyNumbers {
-    
+
     public static final int MIN_LUCKY = 0;
     public static final int MAX_LUCKY = 999999;
     
@@ -14,12 +13,10 @@ public class LuckyNumbers {
         if(begin > end) {
             throw new IllegalArgumentException();
         }
-        if(begin <= end) {
-            for(int j = begin; j <= end; ++ j) {
-                if(isLucky(j) ) {
-                    luckyNumbers.add(j);
-                } 
-            }
+        for(int j = begin; j <= end; ++ j) {
+            if(isLucky(j) ) {
+                luckyNumbers.add(j);
+            } 
         }
         return luckyNumbers;
     }
@@ -32,27 +29,10 @@ public class LuckyNumbers {
     }
     
     public static boolean checkNumber(int number) {
-        return number >= MIN_LUCKY && number <= MAX_LUCKY;
+        return MIN_LUCKY <= number && number <= MAX_LUCKY;
     }
     
     public static boolean checkRange(int begin, int end) {
-        return begin >= MIN_LUCKY && end <= MAX_LUCKY && begin <= end;
+        return MIN_LUCKY <= begin && begin <= end && end <= MAX_LUCKY;
     }
-    
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("¬ведите начало диапазона: ");
-        int begin = in.nextInt();
-        System.out.println("¬ведите конец диапазона: ");
-        int end = in.nextInt();
-        if(!checkRange(begin, end)) {
-            System.out.println("¬ведите правильно число");
-        }
-        List<Integer> number = getLuckyNumbers(begin, end);
-        System.out.println("—частливые числа в заданном диапазоне: от " + begin + " до " + end);
-        System.out.println(number);
-    }
-
 }
-
-
